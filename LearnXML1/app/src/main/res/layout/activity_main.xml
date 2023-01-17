@@ -8,13 +8,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMain"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_new_feed"
-        >
-
-
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/item_new_feed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

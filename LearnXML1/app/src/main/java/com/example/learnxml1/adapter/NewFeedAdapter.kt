@@ -13,10 +13,13 @@ class NewFeedAdapter : RecyclerView.Adapter<NewFeedAdapter.ViewHolderPost>() {
         this.listPost = data
     }
 
-    class ViewHolderPost(private val binding: ItemNewFeedBinding) :
+    inner class ViewHolderPost(private val binding: ItemNewFeedBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(title: PostModel) {
-            binding.tvTitle.text = title.title
+        fun bind(data: PostModel) {
+            binding.apply {
+                tvContent.text = data.body
+                tvId.text = "User ${data.id}"
+            }
         }
     }
 
