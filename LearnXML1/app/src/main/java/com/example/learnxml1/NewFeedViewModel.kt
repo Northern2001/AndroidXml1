@@ -10,6 +10,25 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class NewFeedViewModel : ViewModel() {
-    val mListPost: MutableLiveData<List<PostModel>> = MutableLiveData()
+    private val mListPost: MutableLiveData<List<PostModel>> = MutableLiveData()
+    private val retroInstance = Retrofit.getRetrofitInstance().create(PostService::class.java)
 
+    fun getListPostObserver(): MutableLiveData<List<PostModel>> {
+        return mListPost
+    }
+
+    fun getListPost() {
+        retroInstance.getListPost().enqueue(object : Callback<List<PostModel>> {
+            override fun onResponse(
+                call: Call<List<PostModel>>,
+                response: Response<List<PostModel>>
+            ) {
+                mListPost.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<PostModel>>, t: Throwable) {
+                mListPost.postValue(null)
+            }
+        })
+    }
 }
